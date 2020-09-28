@@ -13,6 +13,9 @@ class Grounds {
       for(int j = 0; j < sizeY; j++) {
         grounds.add(new Soil(sizeX * 100, sizeY * 100));    
       }
+    if (i == sizeX - 1) {
+      println("hello done, length of array...." + grounds.size());
+    }
     }
   }
   
