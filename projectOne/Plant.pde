@@ -12,8 +12,8 @@ class Plant {
   Plant(float _pX, float _pY) {
     posX = _pX;
     posY = _pY;
-    plantType = rollPlant();
-    plantImg = loadImage(plantType + ".png");
+    this.plantType = rollPlant();
+    this.plantImg = loadImage(plantType + ".png");
     plantImg.resize(75, 75);
   }
   
@@ -41,13 +41,6 @@ class Plant {
     return _gridPos * 100 + 12.5;
   }
   
-  String plantType() {
-    return plantType;
-  }
-  
-  String soilImg() {
-    return plantType + ".png";
-  }
   
   float[] gridCoords() {
     return coords;
