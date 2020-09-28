@@ -3,8 +3,8 @@ class Plant {
   String[] plantTypes = {"weed", "flower", "fruit"};
   String[] plantImgs = {"weed.png", "flower.png", "fruit.png"};
   float posX, posY;
-  int age; // in days
-  String plantType = "";
+  int numAge; // in days
+  String Age, plantType = "";
   PImage plantImg;
   float[] coords = {posX, posY};
 
@@ -14,7 +14,7 @@ class Plant {
     posY = _pY;
     plantType = rollPlant();
     plantImg = loadImage(plantType + ".png");
-    plantImg.resize(100, 100);
+    plantImg.resize(75, 75);
   }
   
   
@@ -38,7 +38,7 @@ class Plant {
   
   float convertGridPos(float _gridPos) {
     //println("returning value: " + _gridPos * 100);
-    return _gridPos * 100;
+    return _gridPos * 100 + 12.5;
   }
   
   String plantType() {
