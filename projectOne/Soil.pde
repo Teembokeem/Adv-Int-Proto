@@ -13,8 +13,8 @@ class Soil {
     posX = _pX;
     posY = _pY;
     randomNum = floor(random(0, soilTypes.length));
-    soilType = soilTypes[randomNum];
-    soilImg = loadImage(soilImgs[randomNum]);
+    this.soilType = soilTypes[randomNum];
+    this.soilImg = loadImage(soilImgs[randomNum]);;
     soilImg.resize(100,100);
   }
   
