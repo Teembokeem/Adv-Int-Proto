@@ -2,9 +2,9 @@
 Grounds grounds;
 
 void setup() {
-  size(1600, 1600);
+  size(300, 300);
   background(255, 255, 255);
-  grounds = new Grounds(4, 4);
+  grounds = new Grounds(width/100, height/100);
   grounds.show();
 }
 
