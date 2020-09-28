@@ -6,6 +6,7 @@ class Plant {
   int age; // in days
   String plantType = "";
   PImage plantImg;
+  float[] coords = {posX, posY};
 
   //constructor
   Plant(float _pX, float _pY) {
@@ -19,7 +20,7 @@ class Plant {
   
   //Methods
   void show() {
-  
+    image(plantImg, convertGridPos(posX), convertGridPos(posY));
   }
   
   String rollPlant() {
@@ -33,5 +34,22 @@ class Plant {
       return plantTypes[2];
     }
       
+  }
+  
+  float convertGridPos(float _gridPos) {
+    //println("returning value: " + _gridPos * 100);
+    return _gridPos * 100;
+  }
+  
+  String plantType() {
+    return plantType;
+  }
+  
+  String soilImg() {
+    return plantType + ".png";
+  }
+  
+  float[] gridCoords() {
+    return coords;
   }
 } 

@@ -3,7 +3,7 @@ class Soil {
   String[] soilTypes = {"loamy", "rocky"};
   String[] soilImgs = {"Loamy.png", "Rocky.png"};
   float posX, posY;
-  float[] coord = {posX, posY};
+  float[] coords = {posX, posY};
   String soilType = "";
   PImage soilImg;
   int randomNum;
@@ -37,6 +37,6 @@ class Soil {
   }
   
   float[] gridCoords() {
-    return coord;
+    return coords;
   }
 } 
