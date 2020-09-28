@@ -34,7 +34,7 @@ class Soil {
     return soilImgs[randomNum];
   }
   
-  float[] returnGridCoord() {
+  float[] GridCoord() {
     return coord;
   }
 } 

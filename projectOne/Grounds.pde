@@ -24,12 +24,12 @@ class Grounds {
   //Methods
   void show() {
     for (int i = 0; i < sizeX; i++) {
-        println("hello " + grounds.get(i).soilType());
+        println("hello " + grounds.get(i).soilType() + " " + grounds.get(i).soilImg());
         grounds.get(i).show();    
       
-      /* if (i == sizeX - 1) {
+       if (i == sizeX - 1) {
         println("hello done, length of array...." + grounds.size());
-      } */
+      } 
     }
   }
   
