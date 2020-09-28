@@ -12,9 +12,10 @@ class Soil {
   Soil(float _pX, float _pY) {
     posX = _pX;
     posY = _pY;
-    randomNum = floor(random(0, soilTypes.length - 1));
+    randomNum = floor(random(0, soilTypes.length));
     soilType = soilTypes[randomNum];
     soilImg = loadImage(soilImgs[randomNum]);
+    soilImg.resize(100,100);
   }
   
   //Methods
@@ -23,6 +24,7 @@ class Soil {
   }
   
   float convertGridPos(float _gridPos) {
+    //println("returning value: " + _gridPos * 100);
     return _gridPos * 100;
   }
   
@@ -34,7 +36,7 @@ class Soil {
     return soilImgs[randomNum];
   }
   
-  float[] GridCoord() {
+  float[] gridCoords() {
     return coord;
   }
 } 
