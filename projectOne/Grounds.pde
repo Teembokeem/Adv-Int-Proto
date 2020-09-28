@@ -11,22 +11,26 @@ class Grounds {
     sizeY = _sY;
     for (int i = 0; i < sizeX; i++) {
       for(int j = 0; j < sizeY; j++) {
-        grounds.add(new Soil(sizeX * 100, sizeY * 100));    
+        grounds.add(new Soil(i, j));    
       }
-    if (i == sizeX - 1) {
-      println("hello done, length of array...." + grounds.size());
-    }
+      
+      if (i == sizeX - 1) {
+        println("hello done, length of array...." + grounds.size());
+      }
     }
   }
   
   
   //Methods
   void show() {
-  
-  }
-  
-  void convertGridPos() {
-  
+    for (int i = 0; i < sizeX; i++) {
+        println("hello " + grounds.get(i).soilType());
+        grounds.get(i).show();    
+      
+      /* if (i == sizeX - 1) {
+        println("hello done, length of array...." + grounds.size());
+      } */
+    }
   }
   
   void rollGrid() {
