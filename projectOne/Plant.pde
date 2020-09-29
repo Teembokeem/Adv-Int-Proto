@@ -12,7 +12,7 @@ class Plant {
   Plant(float _pX, float _pY) {
     posX = _pX;
     posY = _pY;
-    this.plantType = rollPlant();
+    this.plantType = rollPlant(); // remove this, doesnt need
     this.plantImg = loadImage(plantType + ".png");
     plantImg.resize(75, 75);
   }
@@ -27,11 +27,11 @@ class Plant {
     int randomNum = floor(random(0, 100));
       
     if (randomNum <= 14) {
-      return plantTypes[0];
+      return plantTypes[2];
     } else if (randomNum <= 44) {
       return plantTypes[1];
     } else {
-      return plantTypes[2];
+      return plantTypes[0];
     }
       
   }
