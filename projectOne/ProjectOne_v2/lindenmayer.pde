@@ -1,45 +1,34 @@
 class lindenmayer {
-  String outputString = "";
+  String code = "";
 
   lindenmayer(String _s) {
-    for (int i = 0; i < _s.length(); i++) {
-      boolean match = false;
-
-      if (match == true) {
-        outputString += _s.charAt(i);
-      } else {
-        for (int j = 0; j < ruleMatcher.length; j++) {
-          if (_s.charAt(i) == char(ruleMatcher[j])) {
-            outputString += ruleEncoder[j];
-            match = !match;
-            break;
-          }
-        }
-      }
+    addComplexity(_s, 1);
+     for(int i = 0;i<3;i++) {
+        println("lopp number: ", i);
+       addComplexity(code, i);
     }
   }
-
-  void grow(char _s) {
-    if (_s == 'F') {
-      float x1 = x[x.length - 1] + step*cos(radians(currentAngle[currentAngle.length - 1]));
-      float y1 = y[y.length - 1] + step*sin(radians(currentAngle[currentAngle.length - 1]));
-      line(x[x.length - 1], y[y.length - 1], x1, y1);
-      x[x.length - 1] = x1;
-      y[y.length - 1] = y1;
-    } else if (_s == '+') {
-      currentAngle[currentAngle.length - 1] -= angle;
-    } else if (_s == '-') {
-      currentAngle[currentAngle.length - 1] += angle;
-    } else if (_s == '[') {
-      float x1 = x[x.length -1];
-      float y1 = y[y.length - 1];
-      float c = currentAngle[currentAngle.length - 1];
-      x = append(x, x1);
-      y = append(y, y1);
-      currentAngle = append(currentAngle, int(c));
-    } else if (_s == ']') {
-      x = shorten(x);
-      y = shorten(y);
+  
+  void addComplexity(String _s, int a) {
+    println("calculating...", a);
+    for (int i = 0; i < _s.length(); i++) {
+      //boolean match = false;
+      println("calculating...", i);
+      for (int j = 0; j < ruleMatcher.length; j++) {
+        if (_s.charAt(i) == char(ruleMatcher[j])) {
+          println("matched",  _s.charAt(i), char(ruleMatcher[j]) );
+          code += ruleEncoder[j];
+          //match = true;
+          println("to be placed: ", ruleEncoder[j], " and: ", code);
+          break;
+        }
+        if(j == ruleMatcher.length - 1 && _s.charAt(i) != char(ruleMatcher[j])) {
+          //println("no match for: ", _s.charAt(i));
+          code += _s.charAt(i);
+        }
+      }
+      //if(match == false) println("false"); code += _s.charAt(i);
+      if(i == _s.length() - 1) println("completed code: ", code);
     }
   }
 }
