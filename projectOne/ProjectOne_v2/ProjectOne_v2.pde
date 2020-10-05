@@ -3,7 +3,7 @@
 
 // Drawer variables
 float[] x, y; // position of drawer
-int[] currentangle; // direction of drawer
+int[] currentAngle; // direction of drawer
 int step = 3, angle = 25; // movement and turn multiplier
 
 
@@ -13,11 +13,19 @@ int numLoops = 6; // number of loops
 String[] ruleMatcher = {"A", "F"}; // array for matching input
 String[] ruleEncoder = {"F[-A][A]F[-A]+FA", "FF"}; // array for decoding ruleMatch
 
+int whereInString = 0; //track L-system node
+
 void setup() {
   println("matcher " + ruleMatcher[0]);
   println("encoder " + ruleEncoder[1]);
   size(800, 800);
   background(255, 255, 255);
+  stroke(255, 255, 255);
+  
+  x = append(x, width/3); //sets starting position for plant
+  y = append(y, height);
+  currentAngle = append(currentAngle, -70); // starting angle, negative to draw upwards
+  
 }
 
 void draw() {
