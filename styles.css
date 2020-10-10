@@ -127,11 +127,12 @@ a {
 
 .header {
     font-family: Raleway,Helvetica Neue,Helvetica,Arial,sans-serif;
-    max-width: 768px;
-    margin: 2em;
+    /* max-width: 768px; */
+    /* margin: 2em; */
     padding: 1em;
+    margin-right: 1em;
     padding-bottom: 6em;
-    text-align: center;
+    text-align: left;
     border-bottom: 1px solid #eee;
     background: #fff;
     letter-spacing: .05em;
@@ -155,6 +156,10 @@ h2 {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
+}
+
+h3 {
+    font-weight: 400;
 }
 
 .header h1, .header h2 {
@@ -309,8 +314,8 @@ code, kbd, samp {
     }
 
     .content, .header {
-        padding-left: 2em;
-        padding-right: 2em;
+        /* padding-left: 2em;
+        padding-right: 2em; */
     }
 
     .content p {
@@ -350,7 +355,7 @@ code, kbd, samp {
 
     .content, .header {
         /* padding-left: 2em; */
-        padding-right: 2em;
+        /* padding-right: 2em; */
     }
 }
 

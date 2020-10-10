@@ -6,7 +6,7 @@ float[] x = {}, y = {};
 // starting position of drawer
 float[] currentAngle = {-70}; // starting direction of drawer
 int step = 5, angle = 25; // starting movement and turn multiplier
-
+boolean isClicked = false;
 // Lindenmayer variables
 String theString = "A"; // "axiom"/start of string
 int numLoops = 8; // number of loops
@@ -17,33 +17,40 @@ lindenmayer plant;
 
 void setup() {
   size(800, 800); 
-  background(255, 255, 255);
+  background(0, 0, 0);
   stroke(0, 0, 0);
   plant = new lindenmayer(theString);
 
   x = append(x, width / 3);
   y = append(y, height);
   float x1 = x[x.length - 1] + 70*cos(radians(currentAngle[currentAngle.length - 1]));
-    float y1 = y[y.length - 1] + 70*sin(radians(currentAngle[currentAngle.length - 1]));
-    line(x[x.length - 1], y[y.length - 1], x1, y1);
-    x[x.length - 1] = x1;
-    y[y.length - 1] = y1;
+  float y1 = y[y.length - 1] + 70*sin(radians(currentAngle[currentAngle.length - 1]));
+  line(x[x.length - 1], y[y.length - 1], x1, y1);
+  x[x.length - 1] = x1;
+  y[y.length - 1] = y1;
 }
 
 void draw() {
-  for (int i = 0; i < 30; i++) {
-    println("length: ", plant.code.length());
-    grow(plant.code.charAt(whereInString));
-    whereInString++;
-    if (whereInString > plant.code.length() - 1) { 
-      whereInString = 0;
-      //println("resetting");
+  if (isClicked) {
+    for (int i = 0; i < 300; i++) {
+      //println("length: ", plant.code.length());
+  
+      isClicked = false;
+
+      if (i + whereInString > plant.code.length() - 1) { 
+        whereInString = 0;
+        grow(plant.code.charAt(i));
+      } else {
+           grow(plant.code.charAt(i + whereInString));
+           whereInString++;
+      }
     }
   }
 }
 
 void grow(char _s) {
   if (_s == 'F' || _s == 'A') {
+    stroke(floor(random(0, 255)), floor(random(0, 255)), floor(random(0, 255)));
     //println("f computed");
     float x1 = x[x.length - 1] + step*cos(radians(currentAngle[currentAngle.length - 1]));
     float y1 = y[y.length - 1] + step*sin(radians(currentAngle[currentAngle.length - 1]));
@@ -54,13 +61,13 @@ void grow(char _s) {
     y[y.length - 1] = y1;
     //println("after append", x[x.length - 2 != 0 ? x.length - 2 : 0], x[x.length - 1]);
   } else if (_s == '+') {
-    println("going left/: ", currentAngle[currentAngle.length - 1]);
+    //println("going left/: ", currentAngle[currentAngle.length - 1]);
     currentAngle[currentAngle.length - 1] -= angle;
-    println("now: ", currentAngle[currentAngle.length - 1]);
+    //println("now: ", currentAngle[currentAngle.length - 1]);
   } else if (_s == '-') {
-    println("going right: ", currentAngle[currentAngle.length - 1]);
+    //println("going right: ", currentAngle[currentAngle.length - 1]);
     currentAngle[currentAngle.length - 1] += angle;
-    println("now: ", currentAngle[currentAngle.length - 1]);
+    //println("now: ", currentAngle[currentAngle.length - 1]);
   } else if (_s == '[') {
     //println("new node");
     //println("x before: ", x[x.length - 1]);
@@ -83,8 +90,6 @@ void grow(char _s) {
 }
 
 void mousePressed() {
-  
-  line(x[x.length - 1], y[y.length - 1], mouseX, mouseY);
-  x[x.length - 1] = mouseX;
-  y[y.length - 1] = mouseY;
+
+  isClicked = true;
 }
