@@ -7,30 +7,39 @@
 float angle = 0.0;
 PShape s;
 float currX = width/2, currY = height/2;
-
+boolean shouldGrow = true;
 void setup() {
   size(800, 800, P3D);
   background(0);
   //cam = new PeasyCam(this, 100);
   //cam.setMinimumDistance(50);
   //cam.setMaximumDistance(500);
+  //noLoop();
 }
 
 void draw() {
-  background(0);
   noFill();
-  stroke(255);
-  translate(width/2, height/2, 0);
+  //stroke(255);
+  translate(width/2, height, 0);
   //rotate object :
   //  rotateY(angle);
   //  angle +=0.1;
   //box(50); //replace with draw branch
-  grow(100, 10);
-  camera(mouseX, mouseY, (height/2.0) / tan(PI*30.0 / 180.0), width/2, height/2, 0, 0, 1, 0);
+  //rotate(random(-PI/8));
+  //grow(100, 5);
+  //rotate(random(PI/4));
+  if (shouldGrow == true) {
+    background(0);
+
+    grow(100, 4);
+  }
+  camera(mouseX, mouseY, (height/2.0) / tan(PI*30.0 / 180.0), width/2.0, height/2.0, 0, 0, 1, 0);
 }
 
 void mousePressed() {
-  grow(100, 10);
+  //background(0);
+  translate(mouseX, mouseY);
+  grow(100, 5);
 }
 
 void grow(float nodeLength, int level) {
@@ -38,62 +47,58 @@ void grow(float nodeLength, int level) {
   float c = 100;
   stroke(c, c/2, 0);
   strokeWeight(float(level)* 0.5);
-  for (int i =0; i < 25; i++) {
-  }
   s = createShape();
   s.beginShape();
 
 
-  //for (int i =0; i < 6; i++) {
-  //  if (i % 4 == 0) {
-  //    s.vertex(20, 0, -20);
-  //  } else {
-  //    switch (i) {
-  //    case 0:
-  //      s.vertex(2*level, 0, -2 * level);
-  //    }
-  //  }
-  //}
+
   pushMatrix();
-  s.vertex(20, 0, -20);
-  s.vertex(20, 0, 20);
-  s.vertex(-20, 0, 20);
-  s.vertex(-20, 0, -20);
-  s.vertex(20, 0, -20);
+  s.vertex(level*2, 0, -level*2);
+  s.vertex(level*2, 0, level*2);
+  s.vertex(-level*2, 0, level*2);
+  s.vertex(-level*2, 0, -level*2);
 
-  s.vertex(20, nodeLength, -20);
-  s.vertex(20, nodeLength, 20);
-  s.vertex(20, 0, 20);
-  s.vertex(20, 0, -20);
+  s.vertex(level*2, 0, -level*2);
 
-  s.vertex(20, nodeLength, -20);
-  s.vertex(-20, nodeLength, -20);
-  s.vertex(-20, 0, -20);
-  s.vertex(20, 0, -20);
+  s.vertex(level*1.5, -nodeLength, -level*2);
+  s.vertex(level*1.5, -nodeLength, level*2);
+  s.vertex(level*2, 0, level*2);
+
+  s.vertex(level*2, 0, -level*2);
+
+  s.vertex(level*1.5, -nodeLength, -level*2);
+  s.vertex(-level*1.5, -nodeLength, -level*2);
+  s.vertex(-level*2, 0, -level*2);
+
+  s.vertex(level*2, 0, -level*2);
+
+  s.vertex(-level*2, 0, -level*2);
+  s.vertex(-level*2, 0, level*2);
+
+  s.vertex(-level*1.5, -nodeLength, level*2);
+
+  s.vertex(level*1.5, -nodeLength, level*2);
+  s.vertex(level*1.5, -nodeLength, -level*2);
+  s.vertex(-level*1.5, -nodeLength, -level*2);
+
+  s.vertex(-level*1.5, -nodeLength, level*2);
+
+  s.vertex(-level*1.5, -nodeLength, -level*2);
+  s.vertex(-level*2, 0, -level*2);
+  s.vertex(-level*2, 0, level*2);
+
+  s.vertex(-level*1.5, -nodeLength, level*2);
+
+  s.vertex(level*1.5, -nodeLength, -level*2);
+  s.vertex(level*2, 0, level*2);
+  s.vertex(-level*2, 0, level*2);
+
+  s.vertex(-level*1.5, -nodeLength, level*2);
+
 
   popMatrix();
-
-  translate(0, -nodeLength);
-
-  s.vertex(-20, 0, 20);
-  s.vertex(-20, nodeLength, 20);
-  s.vertex(-20, nodeLength, -20);
-  s.vertex(-20, 0, -20);
-  s.vertex(-20, 0, 20);
-
-  s.vertex(20, 0, -20);
-  s.vertex(20, nodeLength, 20);
-  s.vertex(-20, nodeLength, 20);
-  s.vertex(-20, 0, 20);
-
-  s.vertex(-20, 0, 20);
-  s.vertex(-20, 0, -20);
-  s.vertex(20, 0, -20);
-  s.vertex(20, 0, 20);
-  s.vertex(-20, 0, 20);
-
   s.endShape();
-  shape(s, 25, 25);
+  shape(s, 0, 0);
 
   if (level>0) {
     level--;
@@ -106,10 +111,11 @@ void grow(float nodeLength, int level) {
       popMatrix();
     }
   } else {
+    shouldGrow = false;
     //grow a leaf:
-      //if(random(1)> 0.8) {
-      //  pushMatrix
-      //}
+    //if(random(1)> 0.8) {
+    //  pushMatrix
+    //}
   }
 }
 //void segment(float h, int level){
