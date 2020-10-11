@@ -95,7 +95,22 @@ void grow(float nodeLength, int level) {
   s.endShape();
   shape(s, 25, 25);
 
-  
+  if (level>0) {
+    level--;
+
+    for (int t = 0; t < round(2); t++) {
+      pushMatrix();
+      translate(0, -nodeLength);
+      rotate(random(-PI/8, PI/8));
+      grow(nodeLength*random(0.5, 1), level);
+      popMatrix();
+    }
+  } else {
+    //grow a leaf:
+      //if(random(1)> 0.8) {
+      //  pushMatrix
+      //}
+  }
 }
 //void segment(float h, int level){
 //  float c = random(100, 175);
