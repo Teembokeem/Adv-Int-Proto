@@ -38,11 +38,10 @@ void draw() {
       isClicked = false;
 
       if (i + whereInString > plant.code.length() - 1) { 
-        whereInString = 0;
-        grow(plant.code.charAt(i));
+        grow(plant.code.charAt(whereInString));
+        whereInString++;
       } else {
-           grow(plant.code.charAt(i + whereInString));
-           whereInString++;
+           grow(plant.code.charAt(i));
       }
     }
   }
