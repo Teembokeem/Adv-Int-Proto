@@ -35,10 +35,16 @@ void setup(){
 void draw(){
   startTime = millis();
     
-  background(0, 0, 0);
-  stroke(0, 230, 0);
+  background(27, 105, 235);
   strokeWeight(0.5);
+  
+  pushMatrix();
+  translate(width/1.3, height / 5, -100);
+  fill(255, 7, 7);
+  sphere(50);
+  popMatrix();
   noFill();
+  stroke(230, 206, 0);
   translate(width/2,height*0.9);
   scale(4);
   rotateY(angleView);
@@ -57,7 +63,7 @@ void draw(){
 void serialEvent(Serial p) { 
   inString = p.readString(); 
   println(inString);
-  int rad = int(map(float(inString), 0, 4000, 0, 40));
+  int rad = int(map(float(inString), 0, 4096, 0, 80));
   println(rad, prevNum);
   if (rad - prevNum > 0) {
     println("plus");
