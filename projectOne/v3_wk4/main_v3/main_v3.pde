@@ -1,25 +1,29 @@
 // project one: Plant l-system
 // version 3
 
-float angle = 0.0;
+//import peasy.*;
+
+//PeasyCam cam;
 
 float currX = width/2, currY = height/2;
-
+boolean treesExist = false;
 ArrayList<Tree> trees = new ArrayList<Tree>();
 //float nodeLength, nodeWidth;
 //int level = 5;
 
 void setup() {
   size(800, 800, P3D);
+  //cam = new PeasyCam(this, 100);
+  //cam.setMinimumDistance(50);
+  //cam.setMaximumDistance(500);
 }
 
 void draw() {
   background(0);
   noFill();
-
-  for(int i =0;i < trees.size(); i++) {
-    Tree thisTree = trees.get(i);
-    thisTree.display();
+  //println(trees.size());
+  for (int i =0; i<trees.size(); i++) {
+    trees.get(i).display();
   }
   camera(mouseX, mouseY, (height/2.0) / tan(PI*30.0 / 180.0), width/2.0, height/2, 0, 0, 1, 0);
 }
