@@ -78,6 +78,7 @@ void serialEvent(Serial p) {
      myShape.updateAngle(0,0,0);
      prevNum = rad;
 } 
+
 void keyPressed(){
   if(key == CODED){
    if(keyCode == UP){

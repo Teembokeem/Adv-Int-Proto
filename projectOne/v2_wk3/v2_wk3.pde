@@ -91,4 +91,6 @@ void grow(char _s) {
 void mousePressed() {
 
   isClicked = true;
+  x = append(x, mouseX);
+  y = append(y, mouseY);
 }
